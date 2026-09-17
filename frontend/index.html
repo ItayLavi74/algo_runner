@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/body.css">
+    <title>Algorithmes runner</title>
+</head>
+<body>
+    <header>
+        <h1>Algorithmes Runner</h1>
+    </header>
+    <nav>
+        <label for="dijkstra" onclick="selectAlgo('dijkstra')">Dijkstra</label>
+        <input type="radio" id="dijkstra" name="algoSelect">
+        <label for="MST" onclick="selectAlgo('MST')">MST</label>
+        <input type="radio" id="MST" name="algoSelect">
+    </nav>
+    <div id="content">
+        <label for="input" class="inputTitle">Enter you graph here: </label>
+        <textarea id="input"></textarea>
+        <label for="output" class="outputTitle">Output:</label>
+        <div id="output"></div>
+    </div>
+
+    <button onclick="run()">run</button>
+
+    <div class="startNode">
+        <label for="startNode">start node</label>
+        <input type="text" id="startNode">
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+</html>
