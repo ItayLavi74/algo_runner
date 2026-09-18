@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from dijkstra import dijkstra
+from backend.algorithms.dijkstra import dijkstra
 from data_validation import isValidData
 
 app = Flask(__name__)
