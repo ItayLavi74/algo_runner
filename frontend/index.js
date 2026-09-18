@@ -3,12 +3,17 @@ const startNode = document.getElementById("startNode");
 let needStartNode = false;
 let algoName = "dijkstra";
 
+// modify the algorithm to user selection
+function selectAlgo(str){
+  algoName = str;
+  console.log("algoName: ", algoName)
+}
 
 async function run(){
     const textarea = document.querySelector('textarea');
     
     // create graph from txt input
-    const graph = parseGraphFromText(textarea.value);
+    const graph, graphSign = parseGraphFromText(textarea.value); //fix data los
     
     const response = await fetch("http://localhost:5000/api/receive", {
         method: "POST",
@@ -34,6 +39,7 @@ async function run(){
 
 // create graph (AL) from text input
 function parseGraphFromText(text) {
+  let graphSign = 1; // '0<' if contain negative, '0' if non negative, '<0' if positive
   const graph = {};
   const lines = text.trim().split('\n');
 
@@ -45,13 +51,10 @@ function parseGraphFromText(text) {
     if (!graph[b]) graph[b] = {};
     graph[a][b] = w;
     graph[b][a] = w;
+
+    graphSign = Math.min(w, graphSign);
   }
 
-  return graph;
+  return graph, graphSign;
 }
 
-// modify the algorithm to user selection
-function selectAlgo(str){
-  algoName = str;
-  console.log("algoName: ", algoName)
-}
