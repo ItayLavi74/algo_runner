@@ -1,25 +1,24 @@
 from flask import Flask, request, jsonify
-from backend.algorithms.dijkstra import dijkstra
-from data_validation import isValidData
+from algorithms.dijkstra import dijkstra
+from data_validation import is_valid_data
 
 app = Flask(__name__)
+
 
 @app.route("/api/receive", methods=["POST"])
 def receive():
     data = request.get_json()
 
-    response = isValidData(data)
+    data_validation = is_valid_data(data)
 
-    if not response["isValid"]:
-        return jsonify(response["message"]), 400
+    if not data_validation["is_valid"]:
+        return jsonify(data_validation["messages"]), 400
 
     print("data:")
     print(data)
 
     distences, previous = dijkstra(data["graph"], data["startNode"])
     return jsonify(distences, previous), 200
-
-
 
 
 # learn later
