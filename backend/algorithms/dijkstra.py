@@ -1,4 +1,6 @@
-# AI generated
+from algorithm_documentation import AlgorithmResult, AlgorithmStep
+
+
 def dijkstra(graph, start):
     distances = {}      # המרחק הקצר ביותר הידוע מ-start לכל צומת
     visited = {}         # צמתים שכבר "סגרנו"
