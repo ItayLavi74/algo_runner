@@ -2,7 +2,7 @@ const output = document.getElementById("output");
 const startNode = document.getElementById("startNode");
 let needStartNode = false;
 let algoName = "dijkstra";
-let inputInfo = {};
+let userInput = {};
 
 // modify the algorithm to user selection
 function selectAlgo(str) {
@@ -25,14 +25,14 @@ function getInput() {
 }
 
 async function run() {
-  inputInfo = getInput();
+  userInput = getInput();
 
   const response = await fetch("http://localhost:5000/api/receive", {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(inputInfo)
+    body: JSON.stringify(userInput)
   });
   const data = await response.text();
 
