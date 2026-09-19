@@ -10,7 +10,7 @@ export default function isInputSyntaxValid(userInput) {
 function isPossibleGraph(graph) {
     if (graph == null) return false;
 
-    if (graph = "") return false;
+    if (graph == "") return false;
 
     return true
 }

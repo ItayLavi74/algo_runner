@@ -20,11 +20,11 @@ export default function getGraphInfo(text) {
 
         // counting edges categorised by weight's sign
         if (w > 0)
-            edgesInfo["positive_edges"] = + 1;
+            edgesInfo["positive_edges"] += 1;
         else if (w == 0)
-            edgesInfo["zero_edges"] = + 1;
+            edgesInfo["zero_edges"] += 1;
         else
-            edgesInfo["negative_edges"] = + 1;
+            edgesInfo["negative_edges"] += 1;
     }
 
     return [graph, edgesInfo];
