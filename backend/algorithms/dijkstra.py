@@ -1,4 +1,4 @@
-from algorithm_documentation import AlgorithmResult, AlgorithmStep
+from algorithm_documentation import AlgorithmStep
 
 
 def dijkstra(graph, start):
@@ -10,7 +10,7 @@ def dijkstra(graph, start):
     for node in graph:
         distances[node] = float('inf')
         previous[node] = None
-    distances[start] = 0
+        distances[start] = 0
 
     while True:
         # מוצאים את הצומת הלא-מבוקר עם המרחק הקטן ביותר
@@ -35,7 +35,7 @@ def dijkstra(graph, start):
                 distances[neighbor] = new_distance
                 previous[neighbor] = current_node
 
-    return distances, previous
+    return None, [distances, previous]
 
 
 def get_path(previous, target):

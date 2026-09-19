@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify
-from algorithms.dijkstra import dijkstra
+from flask_cors import CORS
+
 from data_validation import is_valid_data
+from algorithm_documentation import AlgorithmResult
+from algorithms_info import *
 
 app = Flask(__name__)
+CORS(app, origins=["http://127.0.0.1:5500"])
 
 
 @app.route("/api/receive", methods=["POST"])
@@ -14,11 +18,13 @@ def receive():
     if not data_validation["is_valid"]:
         return jsonify(data_validation["messages"]), 400
 
-    print("data:")
-    print(data)
+    algortihm_function = get_algorithm_function(data["algorithm"])
 
-    distences, previous = dijkstra(data["graph"], data["startNode"])
-    return jsonify(distences, previous), 200
+    steps, result = algortihm_function(data["graph"], data["startNode"])
+
+    return jsonify(AlgorithmResult(algorithm=data["algorithm"],
+                                   steps=steps,
+                                   result=result)), 200
 
 
 # learn later

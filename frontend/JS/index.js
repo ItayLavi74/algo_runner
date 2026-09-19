@@ -5,23 +5,19 @@ import isInputSyntaxValid from './input_syntax_validation.js'
 const output = document.getElementById("output");
 const startNode = document.getElementById("startNode");
 let needStartNode = false;
-let algoName = "";
+let algorithm = "";
 let userInput = {};
 
 document.getElementById('runButton').addEventListener('click', run)
 
-document.querySelectorAll('[name="algoSelect"]').forEach(button => {
-  button.addEventListener('change', (event) => {
-    algoName = event.currentTarget.dataset.name;
-    console.log("algoName: ", algoName);
+// modify the algorithm to user selection
+document.querySelectorAll('[name="algoSelect"]').forEach(elem => {
+  elem.addEventListener('change', (event) => {
+    algorithm = event.currentTarget.dataset.name;
+    console.log("algorithm: ", algorithm);
   })
 })
 
-// // modify the algorithm to user selection
-// export function selectAlgo(str) {
-//   algoName = str;
-//   console.log("algoName: ", algoName)
-// }
 
 function getInput() {
   const textarea = document.querySelector('textarea');
@@ -29,7 +25,7 @@ function getInput() {
   const [graph, edgesInfo] = getGraphInfo(textarea.value);
 
   return {
-    "algoName": algoName,
+    "algorithm": algorithm,
     "graph": graph,
     "edgesInfo": edgesInfo,
     "startNode": startNode.value
@@ -52,13 +48,13 @@ async function run() {
     },
     body: JSON.stringify(userInput)
   });
-  const data = await response.text();
+  const data = await response.json();
 
   // check if backend return error
   if (!response.ok) {
     window.alert(`Couldnt run algorithm: ${data}`)
   }
   else {
-    output.textContent = data;
+    output.textContent = JSON.stringify(data, null, 2);
   }
 }

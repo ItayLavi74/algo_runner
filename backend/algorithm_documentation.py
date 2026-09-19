@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 class AlgorithmResult:
     algorithm: str
     steps: list = field(default_factory=list)
-    result: list = field(default_factory=dict)
+    result: list = field(default_factory=list)
 
 
 @dataclass

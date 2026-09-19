@@ -1,17 +1,17 @@
-from algorithms.algorithms_info import *
+from algorithms_info import *
 
 
 # checks if user input is valid, algorithm depended
 def is_valid_data(data):
     response = {"is_valid": True,
                 "message": ""}
-    print(data["algoName"])
-    match data["algoName"]:
+
+    match data["algorithm"]:
         case "dijkstra":
-            return checkInput(dijkstra, data)
+            return checkInput(dijkstra_info, data)
 
     return {"is_valid": False,
-            "message": ["unmatched 'algoName'"]}
+            "message": ["unmatched 'algorithm'"]}
 
 
 # check input to match algorithm assumptions, algo info from "backend/algorithms/algorithms_info.py"
