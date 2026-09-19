@@ -11,5 +11,5 @@ class AlgorithmResult:
 @dataclass
 class AlgorithmStep:
     action: str
-    explanation: str
+    #explanation: str
     state: dict = field(default_factory=dict)
