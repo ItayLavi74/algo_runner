@@ -4,6 +4,7 @@ import copy
 
 def dijkstra(data):
     graph = data["graph"]
+    print("type of graph", type(graph))
     start = data["startNode"]
     result = {}
     visited = {}

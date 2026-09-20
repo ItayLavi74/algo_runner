@@ -57,3 +57,8 @@ nav {
 .startNode {
     grid-area: startNode;
 }
+
+#runButton {
+    padding-right: 50px;
+    padding-left: 50px;
+}

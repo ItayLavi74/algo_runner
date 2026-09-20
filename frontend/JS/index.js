@@ -21,13 +21,11 @@ document.querySelectorAll('[name="algoSelect"]').forEach(elem => {
 
 function getInput() {
   const textarea = document.querySelector('textarea');
-
-  const [graph, edgesInfo] = getGraphInfo(textarea.value);
+  const graph = JSON.parse(textarea.value)
 
   return {
     "algorithm": algorithm,
-    "graph": graph,
-    "edgesInfo": edgesInfo,
+    "graph":graph,
     "startNode": startNode.value
   }
 }

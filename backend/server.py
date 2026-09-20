@@ -12,11 +12,12 @@ CORS(app, origins=["http://127.0.0.1:5500"])
 @app.route("/api/receive", methods=["POST"])
 def receive():
     data = request.get_json()
+    
     data_validation, http_error_status_Code = is_valid_data(data)
 
     if not data_validation["is_valid"]:
         return jsonify(data_validation["messages"]), http_error_status_Code
-
+    
     algortihm_function = get_algorithm_function(data["algorithm"])
 
     steps, result = algortihm_function(data)
