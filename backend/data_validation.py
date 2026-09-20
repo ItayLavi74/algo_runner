@@ -4,20 +4,26 @@ from algorithms_info import *
 # checks if user input is valid, algorithm depended
 def is_valid_data(data):
     response = {"is_valid": True,
-                "message": ""}
+                "messages": ""}
 
     match data["algorithm"]:
         case "dijkstra":
             return checkInput(dijkstra_info, data)
 
     return {"is_valid": False,
-            "message": ["unmatched 'algorithm'"]}
+            "messages": ["unmatched 'algorithm'"]}, 404
 
 
 # check input to match algorithm assumptions, algo info from "backend/algorithms/algorithms_info.py"
 def checkInput(algorithm_info: object, data: dict):
     response = {"is_valid": True,
                 "messages": []}
+
+    checkGraph(data["graph"])
+
+    if (data["graph"] is None or data["graph"] == ""):
+        response["is_valid"] = False
+        response["messages"].append("graph is empty or contain syntax error")
 
     # start node:
     if algorithm_info.need_start_node:
@@ -49,4 +55,8 @@ def checkInput(algorithm_info: object, data: dict):
         response["messages"].append(
             "Graph CANNOT have edges with NEGATIVE weight")
 
-    return response
+    return response, 400
+
+
+def checkGraph(graph):
+    return

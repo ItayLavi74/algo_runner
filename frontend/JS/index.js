@@ -35,12 +35,6 @@ function getInput() {
 async function run() {
   userInput = getInput();
 
-  // checks if input has correct syntax
-  if (!isInputSyntaxValid(userInput)) {
-    window.alert(`Couldnt run algorithm: invalid input syntax`);
-    return;
-  }
-
   const response = await fetch("http://localhost:5000/api/receive", {
     method: "POST",
     headers: {
@@ -49,6 +43,8 @@ async function run() {
     body: JSON.stringify(userInput)
   });
   const data = await response.json();
+
+  console.log(response.status)
 
   // check if backend return error
   if (!response.ok) {

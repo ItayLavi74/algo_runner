@@ -2,7 +2,9 @@ from algorithm_documentation import AlgorithmStep
 import copy
 
 
-def dijkstra(graph, start):
+def dijkstra(data):
+    graph = data["graph"]
+    start = data["startNode"]
     result = {}
     visited = {}
     steps = []
@@ -12,9 +14,6 @@ def dijkstra(graph, start):
         result[node] = {'weight': None, 'previous': None}
         visited[node] = False
     result[start]['weight'] = 0
-
-    print("Visited:")
-    print(visited)
 
     steps.append(AlgorithmStep("init", {
         "graph": copy.deepcopy(result), "node": start, "scanned_node": None, "completed_nodes": visited.copy()}))
